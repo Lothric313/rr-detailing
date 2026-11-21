@@ -24,7 +24,7 @@ function estimate(selected) {
  const total = priced.reduce((sum, input) => sum + Number(input.dataset.price), 0);
  const notes = [];
  if (priced.length) notes.push('Ориентировочно от ' + formatPrice(total));
- if (priced.length < selected.length) notes.push('Стоимость русификации уточняется');
+ if (priced.length < selected.length) notes.push('Обсудим стоимость русификации');
  return notes.join('. ');
 }
 const formatPrice = price => Number(price).toLocaleString('ru-RU') + ' ₽';
