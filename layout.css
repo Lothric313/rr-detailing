@@ -24,6 +24,95 @@
   transition: transform 180ms var(--ease-out);
 }
 .service-heading[aria-expanded="true"]::after { transform: translateY(2px) rotate(225deg); }
+.russification-note {
+  display: none;
+  padding: 0 0 4px 27px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.russification-note p { margin: 0; }
+.russification:has(input:checked) .russification-note { display: block; }
+.russification-note button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.russification-note button:hover { color: var(--blue); }
+.russification-note button:focus-visible, .russification-close:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+html:has(.russification-dialog[open]) { overflow: hidden; }
+.russification-dialog {
+  box-sizing: border-box;
+  width: min(42rem, calc(100% - 32px));
+  max-height: min(42rem, calc(100dvh - 32px));
+  margin: auto;
+  padding: clamp(16px, 4vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #141e2c;
+  color: var(--text);
+  color-scheme: dark;
+}
+.russification-dialog[open] { display: flex; flex-direction: column; overflow: hidden; }
+.russification-dialog::backdrop { background: #04070dc9; }
+.russification-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.russification-dialog h2 {
+  margin: 0;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+}
+.russification-dialog h3 { margin: 8px 0 12px; color: var(--muted); font-size: 14px; font-weight: 500; }
+.russification-close {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 24px;
+  line-height: 1;
+}
+.russification-close:hover { background: var(--hairline); }
+.russification-models {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  column-gap: 20px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #526377 transparent;
+  list-style: none;
+}
+.russification-models li {
+  padding: 8px 4px 8px 0;
+  border-top: 1px solid var(--hairline);
+  font-size: 14px;
+  line-height: 1.4;
+}
+@media (max-width: 540px) {
+  .russification-models { grid-template-columns: minmax(0, 1fr); }
+}
 .work-contact .work-shade { background: #000b; }
 .work-contact .telegram-link { border-color: #f1f2f430 !important; }
 .review-stars { color: var(--text); letter-spacing: 0; }
@@ -77,9 +166,14 @@
   .work-contact .contact-title { margin: 0; font-size: clamp(32px, 8.5vw, 52px); scroll-margin-top: calc(var(--mobile-header) + 16px); }
   .work-contact .contact-lead { margin-bottom: 0; }
   .work-contact .contact-actions { margin-top: 0; }
-  .work-contact .telegram-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border-radius: 8px; }
+  .work-contact .contact-phone-block { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+  .work-contact .phone-big { display: block; font-size: clamp(12px, 3vw, 20px); letter-spacing: -.04em; white-space: normal; text-wrap: balance; }
+  .work-contact .phone-big:nth-child(2) { text-align: center; }
+  .work-contact .phone-big:last-child { text-align: end; }
+  .work-contact .telegram-link { min-height: 44px; padding: 0; font-size: 14px; }
+  .work-contact .telegram-link span { display: none; }
   .work-contact .contact-map-wrap { margin-top: 4px; }
-  .work-contact #map { display: block; height: 280px; }
+  .work-contact #map { display: block; height: 304px; }
   .work-contact .reviews { min-height: 0; padding: 0; }
   .reviews-heading { align-items: center; gap: 12px; padding-bottom: 16px; }
   .site-footer { min-height: 0; padding: 32px var(--page-gutter) 16px; }
@@ -97,4 +191,8 @@
   .footer-contact a[href^="tel:"] { white-space: nowrap; }
   .footer-car { display: none; }
   .footer-bottom { position: static; align-items: center; gap: 12px; margin-top: 16px; padding-top: 8px; border-top: 1px solid var(--hairline); }
+}
+
+@media (max-width: 420px) {
+  .work-contact .contact-lead { font-size: 13px; letter-spacing: -.025em; }
 }

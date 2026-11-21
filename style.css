@@ -1060,6 +1060,7 @@ html:not(.has-preloader) .site-preloader { display: none; }
 .work-contact-content { align-items:start; gap:clamp(36px,6vw,90px); }
 .work-contact .contact-left { display:flex; flex-direction:column; }
 .work-contact .contact-title { scroll-margin-top:96px; }
+.work-contact .contact-lead { max-width:none; font-size:clamp(14px,1.25vw,17px); line-height:1.45; }
 .work-contact .contact-actions { display:grid; grid-template-columns:minmax(0,1fr); gap:8px 16px; align-items:center; }
 .work-contact .phone-subtitle { grid-column:1/-1; }
 .work-contact .phone-big { white-space:nowrap; }
@@ -1107,22 +1108,17 @@ html:not(.has-preloader) .site-preloader { display: none; }
   .work-contact .contact-title { margin:0; }
   .work-contact .contact-actions { margin-top:16px; }
   .work-contact .telegram-link { justify-content:center; padding:12px 16px; border:1px solid rgba(91,143,240,.65) !important; border-radius:8px; font-size:16px; white-space:nowrap; }
-  .work-contact .contact-map-wrap { position:relative; flex:1 1 auto; min-height:280px; margin-top:20px; }
+  .work-contact .contact-map-wrap { position:relative; flex:1 1 auto; min-height:304px; margin-top:12px; }
   .work-contact #map { position:absolute; inset:0; height:100%; }
   .work-contact .reviews { padding:0; min-height:0; border:0; }
 }
 
-@media (min-width:1101px) {
+@media (min-width:801px) {
   .work-contact .contact-actions { grid-template-columns:max-content minmax(0,1fr); }
-  .work-contact .telegram-link { width:100%; padding-inline:clamp(8px,1vw,16px); gap:8px; font-size:clamp(14px,1.4vw,18px); }
-}
-@media (min-width:560px) and (max-width:800px) {
-  .work-contact .contact-actions { grid-template-columns:max-content max-content; }
-}
-@media (min-width:1101px), (min-width:560px) and (max-width:800px) {
+  .work-contact .telegram-link { width:100%; padding-inline:clamp(8px,1vw,16px); gap:8px; font-size:clamp(14px,1.4vw,18px); white-space:normal; text-align:center; }
   .work-contact .contact-phone-block { display:contents; }
   .work-contact .phone-big { grid-column:1; }
-  .work-contact .telegram-link { grid-column:2; grid-row:2 / span 2; align-self:stretch; }
+  .work-contact .telegram-link { grid-column:2; grid-row:2 / span 3; align-self:stretch; }
   .work-contact .telegram-link:hover { transform:none; }
 }
 

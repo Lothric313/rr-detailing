@@ -13,12 +13,19 @@ groups.forEach(group => {
   });
  });
 });
+const russificationDialog = $('#russification-dialog');
+$('#russification-open').addEventListener('click', () => russificationDialog.showModal());
+
 const selections = $$('.service-option input');
 const totalDisplay = $('.service-total');
 const sendButton = $('#services-send');
 function estimate(selected) {
- const total = selected.reduce((sum, input) => sum + Number(input.dataset.price), 0);
- return 'Ориентировочно от ' + formatPrice(total);
+ const priced = selected.filter(input => input.hasAttribute('data-price'));
+ const total = priced.reduce((sum, input) => sum + Number(input.dataset.price), 0);
+ const notes = [];
+ if (priced.length) notes.push('Ориентировочно от ' + formatPrice(total));
+ if (priced.length < selected.length) notes.push('Стоимость русификации уточняется');
+ return notes.join('. ');
 }
 const formatPrice = price => Number(price).toLocaleString('ru-RU') + ' ₽';
 function updateTotal() {
@@ -38,7 +45,8 @@ selections.forEach(input => input.addEventListener('change', updateTotal));
 window.addEventListener('pageshow', updateTotal);
 sendButton.addEventListener('click', () => {
  const selected = selections.filter(input => input.checked);
- const lines = selected.map(input => '• ' + input.dataset.name + ' — от ' + formatPrice(input.dataset.price));
+ const lines = selected.map(input => '• ' + input.dataset.name +
+  (input.hasAttribute('data-price') ? ' — от ' + formatPrice(input.dataset.price) : ''));
  const message = ['Здравствуйте! Хочу записаться на услуги:', ...lines, '', estimate(selected) + '.'].join('\n');
  window.open(cfg.telegram + '?text=' + encodeURIComponent(message), '_blank', 'noopener');
 });
@@ -94,6 +102,7 @@ updateHeader();
   else { window.scrollTo({top: target, behavior: 'instant'}); frame = 0; lastTime = 0; }
  }
  window.addEventListener('wheel', event => {
+  if (russificationDialog.open) { stop(); return; }
   if (event.defaultPrevented || event.ctrlKey || event.shiftKey || window.rrMobile.matches || reduced.matches || Math.abs(event.deltaX) > Math.abs(event.deltaY)) { stop(); return; }
   // Pixel-precise trackpads already provide their own momentum.
   if (event.deltaMode === 0 && Math.abs(event.deltaY) < 50) { stop(); return; }
