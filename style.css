@@ -1115,7 +1115,12 @@ html:not(.has-preloader) .site-preloader { display: none; }
 
 @media (min-width:801px) {
   .work-contact .contact-actions { grid-template-columns:max-content minmax(0,1fr); }
-  .work-contact .telegram-link { width:100%; padding-inline:clamp(8px,1vw,16px); gap:8px; font-size:clamp(14px,1.4vw,18px); white-space:normal; text-align:center; }
+  .work-contact .telegram-link {
+    display:block; align-content:center; width:100%; padding-inline:clamp(8px,1vw,16px);
+    font-size:clamp(14px,calc(5vw - 28px),38px); line-height:1.15;
+    white-space:normal; text-align:center; text-wrap:balance;
+  }
+  .work-contact .telegram-link span { font-size:.75em; }
   .work-contact .contact-phone-block { display:contents; }
   .work-contact .phone-big { grid-column:1; }
   .work-contact .telegram-link { grid-column:2; grid-row:2 / span 3; align-self:stretch; }
