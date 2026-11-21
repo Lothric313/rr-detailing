@@ -50,6 +50,19 @@ if (contact) {
  });
  wallObserver.observe(contact);
 }
+const reviewsList = $('.reviews-list');
+const reviewsSet = reviewsList?.querySelector('.reviews-set');
+if (reviewsSet) {
+ const repeat = reviewsSet.cloneNode(true);
+ repeat.setAttribute('aria-hidden', 'true');
+ reviewsSet.after(repeat);
+
+ const count = reviewsSet.childElementCount;
+ reviewsList.style.setProperty('--reviews-duration', `${count * 13}s`);
+ new ResizeObserver(([entry]) => {
+  reviewsList.style.setProperty('--reviews-window', `${entry.contentRect.height * 5 / count}px`);
+ }).observe(reviewsSet);
+}
 if(addressEl) addressEl.textContent=cfg.address;
 if(routeEl) routeEl.href=`https://www.google.com/maps/dir/?api=1&destination=${cfg.map.lat}%2C${cfg.map.lng}&travelmode=driving`;
 if(mapEl) mapEl.src=`https://maps.google.com/maps?q=${cfg.map.lat}%2C${cfg.map.lng}&z=16&output=embed`;

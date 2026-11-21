@@ -74,15 +74,14 @@
   .service-cta { min-height: 44px; }
   .work-contact-content { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .work-contact .contact-left { gap: 12px; min-width: 0; }
-  .work-contact .contact-title { margin: 0; font-size: clamp(32px, 8.5vw, 52px); }
+  .work-contact .contact-title { margin: 0; font-size: clamp(32px, 8.5vw, 52px); scroll-margin-top: calc(var(--mobile-header) + 16px); }
   .work-contact .contact-lead { margin-bottom: 0; }
-  .work-contact .contact-actions { display: flex; align-items: flex-start; flex-direction: column; gap: 16px; margin-top: 0; }
+  .work-contact .contact-actions { margin-top: 0; }
   .work-contact .telegram-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border-radius: 8px; }
   .work-contact .contact-map-wrap { margin-top: 4px; }
-  .work-contact #map { height: 248px; }
+  .work-contact #map { display: block; height: 280px; }
   .work-contact .reviews { min-height: 0; padding: 0; }
   .reviews-heading { align-items: center; gap: 12px; padding-bottom: 16px; }
-  .review { padding-block: 16px; }
   .site-footer { min-height: 0; padding: 32px var(--page-gutter) 16px; }
   .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px clamp(16px, 5vw, 40px); }
   .footer-brand { grid-column: 1 / -1; }
