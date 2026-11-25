@@ -82,15 +82,14 @@ html:has(.russification-dialog[open]) { overflow: hidden; }
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 0;
   background: transparent;
   color: var(--text);
   font: inherit;
   font-size: 24px;
   line-height: 1;
 }
-.russification-close:hover { background: var(--hairline); }
+.russification-close:hover { color: var(--blue); }
 .russification-models {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -166,10 +165,8 @@ html:has(.russification-dialog[open]) { overflow: hidden; }
   .work-contact .contact-title { margin: 0; font-size: clamp(32px, 8.5vw, 52px); scroll-margin-top: calc(var(--mobile-header) + 16px); }
   .work-contact .contact-lead { margin-bottom: 0; }
   .work-contact .contact-actions { margin-top: 0; }
-  .work-contact .contact-phone-block { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
-  .work-contact .phone-big { display: block; font-size: clamp(12px, 3vw, 20px); letter-spacing: -.04em; white-space: normal; text-wrap: balance; }
-  .work-contact .phone-big:nth-child(2) { text-align: center; }
-  .work-contact .phone-big:last-child { text-align: end; }
+  .work-contact .contact-phone-block { display: grid; gap: 4px; }
+  .work-contact .phone-big { display: block; font-size: 22px; white-space: nowrap; }
   .work-contact .telegram-link { min-height: 44px; padding: 0; font-size: 14px; }
   .work-contact .telegram-link span { display: none; }
   .work-contact .contact-map-wrap { margin-top: 4px; }

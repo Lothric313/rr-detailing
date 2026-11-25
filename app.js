@@ -33,7 +33,7 @@ function updateTotal() {
  totalDisplay.textContent = selected.length ? estimate(selected) : 'Выберите услуги';
  sendButton.disabled = selected.length === 0;
 }
-// Resolve the choice before the estimate and the 3D preview read it.
+// Resolve the choice before the estimate and previews read it.
 $('#services').addEventListener('change', ({target}) => {
  const group = target.dataset.exclusive;
  if (!group || !target.checked) return;
@@ -43,6 +43,24 @@ $('#services').addEventListener('change', ({target}) => {
 }, true);
 selections.forEach(input => input.addEventListener('change', updateTotal));
 window.addEventListener('pageshow', updateTotal);
+
+const servicePicture = $('.mobile-service-car');
+const servicePictureSource = $('source', servicePicture);
+const servicePictureImage = $('img', servicePicture);
+const previewSelections = selections.filter(input => input.dataset.carPreview);
+function updateServicePicture() {
+ if (!window.rrMobile.matches) return;
+ const selected = previewSelections.filter(input => input.checked);
+ const variant = selected.map(input => input.dataset.carPreview).join('-') || 'stock';
+ servicePictureSource.srcset = `assets/service-previews/${variant}.webp`;
+ servicePictureImage.alt = 'Синий Porsche 911 GT3 RS' +
+  (selected.length ? ' — ' + selected.map(input => input.dataset.name).join(', ') : '');
+}
+previewSelections.forEach(input => input.addEventListener('change', updateServicePicture));
+window.addEventListener('pageshow', updateServicePicture);
+window.rrMobile.addEventListener('change', updateServicePicture);
+updateServicePicture();
+
 sendButton.addEventListener('click', () => {
  const selected = selections.filter(input => input.checked);
  const lines = selected.map(input => '• ' + input.dataset.name +
